@@ -1,34 +1,27 @@
-<?php require __DIR__ . '/views/header.php'; ?>
+<?php require __DIR__ . '/views/header.php';
 
-<?php if (!isset($_SESSION['user'])) : ?>
-    <main class="welcome-container">
-        <div class="title-group">
-            <h1 class="title"><?php echo $config['title']; ?> </h1>
-            <p>Sign up or login to see photos <br> from your friends.</p>
+if (!isset($_SESSION['user'])) {
+    redirect('/');
+} else {
+    require __DIR__ . '/app/parse.php';
+    require __DIR__ . '/views/navigation.php';
+    $user = $_SESSION['user'];
+}
+
+$posts = getAllPostsByUser($_GET['id'], $pdo);
+
+
+?>
+
+
+
+<article class="feed">
+
+    <?php if (!$posts) : ?>
+        <div>
+            <p class="no-post-message"> Ooops, The user hasn't posted anything yet.<br> Bad user. </p>
         </div>
-        <div class="nav-button-wrapper">
-            <a class="nav-button" href="/signup.php">Sign up</a>
-            <a class="nav-button" href="/login.php">Login</a>
-        </div> <!-- /welcome-container -->
-    </main> <!-- /welcome-page -->
-
-    <!-- If the user is logged in -->
-<?php else : ?>
-    <?php require __DIR__ . '/views/navigation.php'; ?>
-    <?php require __DIR__ . '/app/parse.php'; ?>
-
-    <?php if (isset($_SESSION['error'])) : ?>
-        <p class="error-message"><?php echo $_SESSION['error']; ?></p>
-        <?php unset($_SESSION['error']); ?>
-    <?php endif; ?>
-
-    <article class="feed">
-
-        <?php if (!$posts) : ?>
-            <div>
-                <p class="no-post-message"> Oups, here is empty. <br> You can be the first to create a post!</p>
-            </div>
-        <?php endif; ?>
+    <?php else : ?>
 
         <?php foreach ($posts as $post) :
             $likes = countLikes($post['id'], $pdo);
@@ -97,18 +90,8 @@
 
                         </li>
 
-
-
-
                     <?php endforeach;  ?>
                 </ul>
-
-                <!-- Comments section -->
-                <!-- <form action="/app/comments/store.php?id=<?php echo $post['id']; ?>" class="commentsForm" method="post" enctype="multipart/form-data">
-                    <label for="content"></label>
-                    <textarea class="commentInput" name="comment" cols="30" rows="1" placeholder="Comment?"></textarea>
-                    <button class="commentsButton" type="submit">Comment</button>
-                </form> -->
 
                 <form action="" class="commentsForm" method="post" enctype="multipart/form-data">
                     <label for="content"></label>
@@ -122,10 +105,9 @@
             </div> <!-- /post-wrapper -->
 
         <?php endforeach; ?>
-        <!-- end foreachposts -->
+    <?php endif; ?>
+    <!-- end foreachposts -->
 
-    </article> <!-- /feed -->
-<?php endif; ?>
-<!-- endif loggedIn -->
+</article> <!-- /feed -->
 
 <?php require __DIR__ . '/views/footer.php'; ?>
