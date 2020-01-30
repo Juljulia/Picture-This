@@ -23,7 +23,7 @@ Picture This is a school assignment at YRGO where we got the opportunity to lear
 ```bash
 $ git clone https://github.com/Juljulia/Picture-This
 ```
-2. Set up a webserver with the document root as the cloned repository.
+2. Set up a webserver at localhost:1337 with the document root as the cloned repository.
 
 ### Testers 
 * Maja Alin
