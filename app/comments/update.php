@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../autoload.php';
+require __DIR__.'/../autoload.php';
 
 header('Content-Type: application/json');
 
@@ -21,7 +21,6 @@ if (isset($_POST['content'], $_POST['id'])) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
     $statement->execute();
-
 
     // FETCHES COMMENT
     $statement = $pdo->prepare('SELECT * FROM comment WHERE id = :id');

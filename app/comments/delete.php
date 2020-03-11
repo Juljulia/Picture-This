@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../autoload.php';
+require __DIR__.'/../autoload.php';
 
 header('Content-Type: application/json');
 
@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     $comment = $statement->fetch();
 
     // DELETES COMMENT
-    $sql = "DELETE from comment WHERE id = :id";
+    $sql = 'DELETE from comment WHERE id = :id';
     $statement = $pdo->prepare($sql);
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -27,8 +27,8 @@ if (isset($_GET['id'])) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 
-    $response  = [
-        'removeComment' => true
+    $response = [
+        'removeComment' => true,
     ];
 
     echo json_encode($response);

@@ -1,10 +1,10 @@
-<?php require __DIR__ . '/views/header.php';
+<?php require __DIR__.'/views/header.php';
 
 if (!isset($_SESSION['user'])) {
     redirect('/');
 } else {
-    require __DIR__ . '/app/parse.php';
-    require __DIR__ . '/views/navigation.php';
+    require __DIR__.'/app/parse.php';
+    require __DIR__.'/views/navigation.php';
     $user = $_SESSION['user'];
 }
 ?>
@@ -21,7 +21,7 @@ if (!isset($_SESSION['user'])) {
                 <button type="submit">Search!</button>
             </div>
 
-            <?php if (isset($_GET['search'])) : ?>
+            <?php if (isset($_GET['search'])) { ?>
                 <?php
                 $searchTerm = $_GET['search'];
                 $searchresults = getSearchResult($searchTerm, $pdo);
@@ -31,20 +31,20 @@ if (!isset($_SESSION['user'])) {
 
                     <h2>Search results... </h2>
 
-                    <?php if ($searchresults !== false) : ?>
+                    <?php if ($searchresults !== false) { ?>
 
-                        <?php foreach ($searchresults as $result) : ?>
+                        <?php foreach ($searchresults as $result) { ?>
                             <h3 class="searchResult"><a href="/account.php?id=<?php echo $result['id']; ?>"><?php echo $result['email']; ?></h3></a>
 
 
-                        <?php endforeach; ?>
+                        <?php } ?>
 
-                    <?php else : ?>
+                    <?php } else { ?>
                         <h3>Sorry, no match was found </h3>
-                    <?php endif; ?>
+                    <?php } ?>
 
 
-                <?php endif; ?>
+                <?php } ?>
 
 
 
@@ -53,4 +53,4 @@ if (!isset($_SESSION['user'])) {
 </article> <!-- /profile-wrapper-->
 
 
-<?php require __DIR__ . '/views/footer.php'; ?>
+<?php require __DIR__.'/views/footer.php'; ?>

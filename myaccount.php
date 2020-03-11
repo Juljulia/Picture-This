@@ -11,17 +11,17 @@ if (!isset($_SESSION['user'])) {
 ?>
     
 <article class= "edit-wrapper">
-    <?php if (isset($_SESSION['error'])):?>
+    <?php if (isset($_SESSION['error'])) { ?>
         <p class="error-message"><?php echo $_SESSION['error']; ?></p>
-        <?php unset($_SESSION['error']);?>
-    <?php endif;?>
+        <?php unset($_SESSION['error']); ?>
+    <?php }?>
         <form action="app/users/upload-profile-picture.php" method="post" enctype="multipart/form-data">
         <div class="fileinputs">
-        <?php if ($avatar):?>
-            <img src="<?php echo "/app/users/uploads/".$avatar['data'];?>" alt="avatar image" class="avatar" loading="lazy">
-            <?php else : ?> 
+        <?php if ($avatar) { ?>
+            <img src="<?php echo '/app/users/uploads/'.$avatar['data']; ?>" alt="avatar image" class="avatar" loading="lazy">
+            <?php } else { ?> 
                 <p>Upload your profile avatar image</p>
-            <?php endif ; ?>
+            <?php }  ?>
             
             <input type="file" name="profile-img" accept="image/*" class="choose-file" loading="lazy">
             <input type="submit" class="upload-button" value="Upload"></input> 

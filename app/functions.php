@@ -33,10 +33,9 @@ function getPostById(int $userId, int $postId, PDO $pdo): array
     }
 }
 
-
 function getAvatarbyId(int $imageId, PDO $pdo)
 {
-    $statement = $pdo->prepare("SELECT data FROM user INNER JOIN image ON user.image_id = image.id WHERE image.id = :imageId");
+    $statement = $pdo->prepare('SELECT data FROM user INNER JOIN image ON user.image_id = image.id WHERE image.id = :imageId');
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -117,7 +116,6 @@ function getFollowById(int $userId, int $chosenUserId, PDO $pdo)
     return $hasFollowed;
 }
 
-
 function getAllComments(int $postId, pdo $pdo)
 {
     $statement = $pdo->prepare('SELECT comment.*, user.email FROM comment INNER JOIN user ON comment.user_id = user.id WHERE post_id = :postId ORDER BY date');
@@ -127,20 +125,20 @@ function getAllComments(int $postId, pdo $pdo)
     $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
     $statement->execute();
     $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
     return $comments;
 }
 
-
 function getSearchResult(string $searchTerm, pdo $pdo)
 {
-    $sql = "SELECT * FROM user WHERE email LIKE :searchTerm";
+    $sql = 'SELECT * FROM user WHERE email LIKE :searchTerm';
 
     $statement = $pdo->prepare($sql);
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
 
-    $searchTerm = "%" . $searchTerm . "%";
+    $searchTerm = '%'.$searchTerm.'%';
 
     $statement->bindParam(':searchTerm', $searchTerm, PDO::PARAM_STR);
 

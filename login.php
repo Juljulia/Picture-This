@@ -8,10 +8,10 @@
         <p>Login to see photos from your friends</p>
     </div>
 
-    <?php if (isset($_SESSION['error'])):?>
+    <?php if (isset($_SESSION['error'])) { ?>
             <p class="error-message"><?php echo $_SESSION['error']; ?></p>
-            <?php unset($_SESSION['error']);?>
-    <?php endif ;?>
+            <?php unset($_SESSION['error']); ?>
+    <?php } ?>
     
     <form action="app/users/login.php" method="post" class="form-wrapper">
         <div class="form-group">

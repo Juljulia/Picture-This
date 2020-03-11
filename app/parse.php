@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 //fetch the signed up user and insert to SESSION[user]
@@ -14,9 +15,8 @@ unset($user['password']);
 $_SESSION['user'] = $user;
 $userId = (int) $_SESSION['user']['id'];
 
-
 //fetch all posts with image and description
-$statement=$pdo->prepare("SELECT * FROM image INNER JOIN post ON image.id = image_id;");
+$statement = $pdo->prepare('SELECT * FROM image INNER JOIN post ON image.id = image_id;');
 if (!$statement) {
     die(var_dump($pdo->errorInfo()));
 }
