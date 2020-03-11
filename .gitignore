@@ -1,4 +1,6 @@
 /app/users/uploads/*
 /app/posts/uploads/*
+.php_cs
+.php_cs_cache
 !/app/users/uploads/.keep
 !/app/posts/uploads/.keep
