@@ -10,28 +10,28 @@ if (isset($_POST['email'], $_POST['password'])) {
         $statement = $pdo->prepare('SELECT * FROM user WHERE email = :email');
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
-        
-        $user=$statement->fetch(PDO::FETCH_ASSOC);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
-            $_SESSION['error'] = "Sorry, the mail was incorrect.";
+            $_SESSION['error'] = 'Sorry, the mail was incorrect.';
             redirect('/../../login.php');
         }
 
         if (password_verify($_POST['password'], $user['password'])) {
             //password_verify verifies typed password against hashed password from database and returns a bool.
-            
+
             unset($user['password']);
-            
+
             $_SESSION['user'] = $user;
-            
+
             redirect('/');
         } else {
-            $_SESSION['error'] = "Sorry, your password was incorrect.";
+            $_SESSION['error'] = 'Sorry, your password was incorrect.';
             redirect('/../../login.php');
         }
     } else {
-        $_SESSION['error'] = "The email address is not valid.";
+        $_SESSION['error'] = 'The email address is not valid.';
         redirect('/../../login.php');
     }
 }

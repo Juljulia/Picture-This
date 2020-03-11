@@ -15,17 +15,17 @@ if (isset($_GET['id'])) {
 ?>
 
 <article>
-    <form action="<?php echo '/app/posts/update.php?id='. $postId ?>" method="post" enctype="multipart/form-data" class="edit-post-form">
+    <form action="<?php echo '/app/posts/update.php?id='.$postId ?>" method="post" enctype="multipart/form-data" class="edit-post-form">
     <img src="<?php echo '/app/posts/uploads/'.$post['data']?>" alt="post-image" loading="lazy">
-    <?php if (isset($_SESSION['success'])):?>
+    <?php if (isset($_SESSION['success'])) { ?>
         <p class="success-message"><?php echo $_SESSION['success']; ?></p>
         <?php unset($_SESSION['success']); ?>
-    <?php endif;?>
+    <?php }?>
 
-    <?php if (isset($_SESSION['error'])):?>
+    <?php if (isset($_SESSION['error'])) { ?>
         <p class="error-message"><?php echo $_SESSION['error']; ?></p>
-        <?php unset($_SESSION['error']);?>
-    <?php endif;?>
+        <?php unset($_SESSION['error']); ?>
+    <?php }?>
 
     <p>Update your post image and/or description</p>
 
@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
 </article>
 
 <article>
-    <form action="<?php echo '/app/posts/delete.php?id='. $postId ?>" method="post" class="edit-post-form">
+    <form action="<?php echo '/app/posts/delete.php?id='.$postId ?>" method="post" class="edit-post-form">
         <div class="form-group">
             <label for="password">Enter your password to delete post</label>
             <input type="password" name="password" id="password" required>

@@ -8,10 +8,10 @@ if (!isset($_SESSION['user'])) {
 ?>
 
 <form action="app/posts/store.php" method="post" enctype="multipart/form-data" class="postform-wrapper">
-    <?php if (isset($_SESSION['error'])):?>
+    <?php if (isset($_SESSION['error'])) { ?>
         <p class="error-message"><?php echo $_SESSION['error']; ?></p>
-        <?php unset($_SESSION['error']);?>
-    <?php endif;?>
+        <?php unset($_SESSION['error']); ?>
+    <?php }?>
     <p class="create-post-text">Create a post with image and description</p>
     <div class="create-post-content">
         <input type="file" name="post-image" accept="image/*" class= "choose-file">
