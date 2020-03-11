@@ -1,3 +1,4 @@
+[![StyleCI](https://github.styleci.io/repos/226869016/shield?branch=master)](https://github.styleci.io/repos/226869016)
 # Picture-This
 Picture This is a school assignment at YRGO where we got the opportunity to learn how to create an Instagram Clone using CSS, HTML, Javascript, PHP and a SQL database.
 
