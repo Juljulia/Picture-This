@@ -28,7 +28,7 @@
             <input class="form-control" type="password" name="password-repeat" id="password-repeat" required>
         </div><!-- /form-group -->
 
-        <input type="submit" class="signup-button" value="Signup"></input>
+        <input type="submit" class="signup-button" value="Sign up"></input>
     </form>
     <div class="option">
         <p>Or do you want to</p>
